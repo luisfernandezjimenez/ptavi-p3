@@ -5,6 +5,7 @@ from xml.sax.handler import ContentHandler
 from xml.sax import make_parser
 from smallsmilhandler import SmallSMILHandler
 import sys
+import json
 
 
 if __name__ == "__main__":
@@ -25,11 +26,16 @@ if __name__ == "__main__":
             
             #devuelvo la lista de claves del diccionario
             for atributo in atributos:
-                mis_atributos = mis_atributos + '\t' + atributo + '="' + atributos[atributo] + '"'
+                if atributos[atributo] != "":
+                    mis_atributos = mis_atributos + '\t' + atributo + '="' + atributos[atributo] + '"'
             
             salida += etiqueta + mis_atributos + "\n"
 
         print(salida)
+        
+        ficherojson = ficherosmil.split('.')[0] + '.json'
+        json.dump(mis_etiquetas, open(ficherojson, 'w'))
+
     except IndexError:
         print("Usage: python3 karaoke.py file.smil")
         

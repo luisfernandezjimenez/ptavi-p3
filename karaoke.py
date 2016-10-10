@@ -15,7 +15,7 @@ class KaraokeLocal():
         sHandler = SmallSMILHandler()
         parser.setContentHandler(sHandler)
         parser.parse(open(ficherosmil))
-        #obtengo las etiquetas del anterior ejercicio
+        # obtengo las etiquetas del anterior ejercicio
         self.mi_lista = sHandler.get_tags()
 
     def __str__(self):
@@ -42,7 +42,8 @@ class KaraokeLocal():
             atributos = sublista[1]
             for clave in atributos:
                 if clave == 'src' and atributos[clave][:7] == 'http://':
-                #descargo el contenido de src y recorto el string por el final
+                    # descargo el contenido de src y
+                    # recorto el string por el final
                     urllib.request.urlretrieve(atributos[clave],
                                                atributos[clave].split('/')[-1])
                     atributos[clave] = atributos[clave].split('/')[-1]
